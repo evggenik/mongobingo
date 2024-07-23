@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: mongobingo
+
+  data:
+    mongodb:
+      username: wasya
+      password: wasya
+      host: localhost
+      port: 27017
+      database: evggenn
+      authentication-database: admin
