@@ -1,5 +1,7 @@
 package com.evggenn.mongobingo;
 
+import com.evggenn.mongobingo.category.Category;
+import com.evggenn.mongobingo.category.CategoryRepository;
 import com.evggenn.mongobingo.product.Product;
 import com.evggenn.mongobingo.product.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -16,13 +18,21 @@ public class MongobingoApplication {
 
 //	@Bean
 	public CommandLineRunner commandLineRunner(
-			ProductRepository productRepository) {
+//			ProductRepository productRepository,
+			CategoryRepository categoryRepository
+	) {
 		return args -> {
-			var product = Product.builder()
-					.name("iphone")
-					.description("Smart Phone")
+			var category1 = Category.builder()
+					.name("cat 1")
+					.description("category")
 					.build();
-			productRepository.insert(product);
+
+			var category2 = Category.builder()
+					.name("cat 2")
+					.description("category")
+					.build();
+			categoryRepository.insert(category2);
+			categoryRepository.insert(category1);
 		};
 	}
 
