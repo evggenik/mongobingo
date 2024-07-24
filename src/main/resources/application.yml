@@ -10,3 +10,7 @@ spring:
       port: 27017
       database: evggenn
       authentication-database: admin
+
+springdoc:
+  swagger-ui:
+    path: swagger-ui.html
