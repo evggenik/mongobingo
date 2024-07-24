@@ -14,7 +14,7 @@ public class MongobingoApplication {
 		SpringApplication.run(MongobingoApplication.class, args);
 	}
 
-	@Bean
+//	@Bean
 	public CommandLineRunner commandLineRunner(
 			ProductRepository productRepository) {
 		return args -> {
