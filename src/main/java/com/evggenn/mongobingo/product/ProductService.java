@@ -1,5 +1,7 @@
 package com.evggenn.mongobingo.product;
 
+import com.evggenn.mongobingo.dto.ProductDto;
+import com.evggenn.mongobingo.dto.ProductMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,16 +12,18 @@ import java.util.List;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final ProductMapper productMapper;
 
-    public String saveProduct(Product product) {
+    public String saveProduct(ProductDto productDto) {
         // todo DTO and validation
-        productRepository.save(product);
+        var product = productRepository.save(productMapper.toProduct(productDto));
         return product.getId();
     }
 
-    public Product findById(String id) {
+    public ProductDto findById(String id) {
         return productRepository.findById(id)
-                .orElse(null);
+                .map(productMapper::toDto)
+                .orElseThrow(() -> new RuntimeException("Product not found with ID:: " + id));
     }
 
     public List<Product> findAll() {

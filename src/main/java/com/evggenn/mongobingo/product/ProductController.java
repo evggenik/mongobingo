@@ -1,5 +1,7 @@
 package com.evggenn.mongobingo.product;
 
+import com.evggenn.mongobingo.dto.ProductDto;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +17,9 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<String> createProduct(
-            @RequestBody Product product
+            @RequestBody @Valid ProductDto productDto
     ) {
-        return ResponseEntity.ok(productService.saveProduct(product));
+        return ResponseEntity.ok(productService.saveProduct(productDto));
     }
 
     @GetMapping
@@ -26,7 +28,7 @@ public class ProductController {
     }
 
     @GetMapping("/{product-id}")
-    public ResponseEntity<Product> findById(
+    public ResponseEntity<ProductDto> findById(
             @PathVariable("product-id") String id
     ) {
         return ResponseEntity.ok(productService.findById(id));
